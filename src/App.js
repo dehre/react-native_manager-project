@@ -6,6 +6,7 @@ import firebase from "firebase";
 
 import reducers from "./reducers";
 import {Header} from "./components/common";
+import LoginForm from "./components/LoginForm";
 
 class App extends Component {
 
@@ -26,9 +27,7 @@ class App extends Component {
         store={createStore(reducers)}>
         <View>
           <Header headerText={"Manager"}/>
-          <Text>
-            Hello from the app
-          </Text>
+          <LoginForm/>
         </View>
       </Provider>
     )
