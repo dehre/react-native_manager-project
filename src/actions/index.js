@@ -1,12 +1,8 @@
-export const userInfo = ()=>{
-  return {
-    type: 'get_user'
-  }
-}
+import {EMAIL_CHANGED} from "./types";
 
-export const userNew = ()=>{
+export const emailChanged = (text)=>{
   return {
-    type: 'add_user',
-    name: 'Giovanni'
+    type: EMAIL_CHANGED,
+    payload: text
   }
 }
