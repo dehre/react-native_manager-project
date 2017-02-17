@@ -14,18 +14,18 @@ const RouterComponent = ()=>{
           onRight={()=>{Actions.employeeCreate()}}
           rightTitle="Add"
           key="employeeList"
-          component={EmployeeList}/>
+          component={EmployeeList}></Scene>
         <Scene
           key="employeeCreate"
           component={EmployeeCreate}
           title="Create Employee"
-          initial/>
+          initial></Scene>
       </Scene>
       <Scene key="auth">
         <Scene
           key="login"
           component={LoginForm}
-          title="Please Login"/>
+          title="Please Login"></Scene>
       </Scene>
     </Router>
   )
