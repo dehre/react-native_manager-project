@@ -1,25 +1,32 @@
 import React,{Component} from "react";
 import {Text,Picker} from "react-native";
 import {connect} from "react-redux";
+import _ from "lodash";
 
 import EmployeeForm from "./EmployeeForm";
-import {employeeCreate} from "../actions";
+import {employeeUpdate,employeeSave} from "../actions";
 import {Card,CardSection,Button} from "./common";
 
 class EmployeeCreate extends Component {
 
+  componentWillMount(){
+    _.each(this.props.employee, (value,prop)=>{
+      this.props.employeeUpdate({prop,value});
+    })
+  }
+
   onButtonPress(){
     const {name,phone,shift} = this.props;
-    this.props.employeeCreate({name,phone,shift: shift || 'Monday'})
+    this.props.employeeSave({name, phone, shift, uid: this.props.employee.uid});
   }
 
   render(){
     return(
       <Card>
-        <EmployeeForm {...this.props}/>
+        <EmployeeForm/>
         <CardSection>
           <Button onPress={this.onButtonPress.bind(this)}>
-            Create
+            Save Changes
           </Button>
         </CardSection>
       </Card>
@@ -29,14 +36,16 @@ class EmployeeCreate extends Component {
 }
 
 const mapStateToProps = (state)=>{
-  const {name,phone,shift} = state.employeeForm;
+  const {name,phone,shift,uid} = state.employeeForm;
   return {
     name: name,
     phone: phone,
-    shift: shift
+    shift: shift,
+    uid: uid
   }
 }
 
 export default connect(mapStateToProps,{
-  employeeCreate
+  employeeUpdate,
+  employeeSave
 })(EmployeeCreate)
